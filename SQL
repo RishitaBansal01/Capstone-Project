@@ -1,0 +1,133 @@
+QUERY 1:- AI Impact on revenue
+# Problem: Which industries or countries are seeing the highest revenue increases due to AI adoption? 
+# Use: Correlate AI Adoption Rate, Revenue Increase, and Industry via SQL queries and Python visualizations. Show trends in Power BI.
+
+SELECT 
+    Country,
+    Industry,
+    ROUND(AVG(`AI Adoption Rate (%)`), 2) AS Avg_Adoption_Rate,
+    ROUND(AVG(`Revenue Increase Due to AI (%)`), 2) AS Avg_Revenue_Increase
+FROM 
+    g_a_c
+GROUP BY 
+    Country, Industry
+ORDER BY 
+    Avg_Revenue_Increase DESC;
+    
+QUERY 2:-Job Loss Risk Assessment
+# Problem: What is the projected risk of job loss due to AI in each country/industry? 
+# Use: Group by Industry or Country, calculate job loss averages, and visualize the most affected sectors.
+
+SELECT 
+    Industry,
+    ROUND(AVG(`Job Loss Due to AI (%)`), 2) AS Avg_Job_Loss_Percent
+FROM 
+    g_a_c
+GROUP BY 
+    Industry
+ORDER BY 
+    Avg_Job_Loss_Percent DESC;
+    
+SELECT 
+    Country,
+    ROUND(AVG(`Job Loss Due to AI (%)`), 2) AS Avg_Job_Loss_Percent
+FROM 
+    g_a_c
+GROUP BY 
+    Country
+ORDER BY 
+    Avg_Job_Loss_Percent DESC;
+
+QUERY 3:-AI Tool Effectiveness Analysis
+# Problem: Which AI tools are associated with higher collaboration rates, content output, or revenue growth? 
+# Use: Use Python to group by Top AI Tools Used, and compare average metrics like Revenue Increase, Collaboration Rate.
+
+SELECT 
+   `Top AI Tools Used`,
+    ROUND(AVG(`Revenue Increase Due to AI (%)`), 2) AS Avg_Revenue_Increase,
+    ROUND(AVG(`Human-AI Collaboration Rate (%)`), 2) AS Avg_Collaboration_Rate,
+    ROUND(AVG(`AI-Generated Content Volume (TBs per year)`), 2) AS Avg_Content_Output
+FROM 
+    g_a_c
+GROUP BY 
+    `Top AI Tools Used`
+ORDER BY 
+    Avg_Revenue_Increase DESC;
+    
+QUERY 4:-Regulation vs Innovation
+# Problem: Does stricter AI regulation affect adoption rates, revenue growth, or consumer trust? 
+# Use: Compare Strict, Moderate, and other Regulation Status types against other KPIs in Power BI dashboards.
+
+SELECT 
+    `Regulation Status`,
+    ROUND(AVG(`AI Adoption Rate (%)`), 2) AS Avg_Adoption_Rate,
+    ROUND(AVG(`Revenue Increase Due to AI (%)`), 2) AS Avg_Revenue_Increase,
+    ROUND(AVG(`Consumer Trust in AI (%)`), 2) AS Avg_Consumer_Trust
+FROM 
+    g_a_c
+GROUP BY 
+    `Regulation Status`
+ORDER BY 
+    Avg_Adoption_Rate DESC;
+    
+QUERY 5:-Market Penetration Problem
+# Question: Which countries or industries are adopting AI the fastest? 
+# Use: Group by Country or Industry → average AI Adoption Rate (%).
+
+SELECT 
+    Country,
+    ROUND(AVG(`AI Adoption Rate (%)`), 2) AS Avg_Adoption_Rate
+FROM 
+    g_a_c
+GROUP BY 
+    Country
+ORDER BY 
+    Avg_Adoption_Rate DESC;
+    
+SELECT 
+    Industry,
+    ROUND(AVG(`AI Adoption Rate (%)`), 2) AS Avg_Adoption_Rate
+FROM 
+    g_a_c
+GROUP BY 
+    Industry
+ORDER BY 
+    Avg_Adoption_Rate DESC;
+
+QUERY 6:-Operational Efficiency Problem
+# Question: How does AI impact human-AI collaboration in various sectors? 
+# Use: Analyze Human-AI Collaboration Rate (%) by Industry.
+
+SELECT 
+    Industry,
+    ROUND(AVG(`Human-AI Collaboration Rate (%)`), 2) AS Avg_Collaboration_Rate
+FROM 
+    g_a_c
+GROUP BY 
+    Industry
+ORDER BY 
+    Avg_Collaboration_Rate DESC;
+    
+QUERY 7:-Revenue Growth Problem
+# Question: Which AI tools or regions see the highest revenue growth due to AI? 
+# Use: Group by Top AI Tools Used or Country → average Revenue Increase Due to AI (%)
+
+SELECT 
+    `Top AI Tools Used`,
+    ROUND(AVG(`Revenue Increase Due to AI (%)`), 2) AS Avg_Revenue_Growth
+FROM 
+    g_a_c
+GROUP BY 
+    `Top AI Tools Used`
+ORDER BY 
+    Avg_Revenue_Growth DESC;
+    
+SELECT 
+    Country,
+    ROUND(AVG(`Revenue Increase Due to AI (%)`), 2) AS Avg_Revenue_Growth
+FROM 
+    g_a_c
+GROUP BY 
+    Country
+ORDER BY 
+    Avg_Revenue_Growth DESC;
